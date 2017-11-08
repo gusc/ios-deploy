@@ -125,7 +125,8 @@ def autoexit_command(debugger, command, result, internal_dict):
         elif printBacktraceTime is None and state == lldb.eStateStopped:
             sys.stdout.write( '\\nPROCESS_STOPPED\\n' )
             debugger.HandleCommand('bt')
-            os._exit({exitcode_app_crash})
+            # We don't want to exit when process has stopped
+            #os._exit({exitcode_app_crash})
         elif state == lldb.eStateCrashed:
             sys.stdout.write( '\\nPROCESS_CRASHED\\n' )
             debugger.HandleCommand('bt')
